@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: gulimall-ware
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: c13b79be-8cbc-4db2-8a21-156631f7697b
+        extension-configs:
+          - data-id: datasource.yml
+            refresh: true
+            group: dev
+
+          - data-id: mybatis-plus.yml
+            refresh: true
+            group: dev
+
+          - data-id: other.yml
+            refresh: true
+            group: dev
+        group: prod
+        file-extension: yaml
+
