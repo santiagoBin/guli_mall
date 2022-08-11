@@ -1,6 +1,8 @@
 package com.atguigu.gulimall.coupon.controller;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -13,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.atguigu.gulimall.coupon.entity.SkuLadderEntity;
 import com.atguigu.gulimall.coupon.service.SkuLadderService;
-import com.atguigu.common.utils.PageUtils;
-import com.atguigu.common.utils.R;
+import com.atguigu.gulimall.common.utils.PageUtils;
+import com.atguigu.gulimall.common.utils.R;
 
 
 
@@ -83,6 +85,14 @@ public class SkuLadderController {
     //@RequiresPermissions("coupon:skuladder:delete")
     public R delete(@RequestBody Long[] ids){
 		skuLadderService.removeByIds(Arrays.asList(ids));
+
+        return R.ok();
+    }
+
+    @RequestMapping("/deleteBySkuIds")
+    //@RequiresPermissions("coupon:skuladder:delete")
+    public R deleteSkuLadderBySkuIds(@RequestBody List<Long> ids){
+        skuLadderService.removeBySkuIds(ids);
 
         return R.ok();
     }

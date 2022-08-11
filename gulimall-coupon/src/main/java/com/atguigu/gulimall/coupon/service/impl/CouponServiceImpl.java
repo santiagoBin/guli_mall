@@ -5,12 +5,13 @@ import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.common.utils.PageUtils;
-import com.atguigu.common.utils.Query;
+import com.atguigu.gulimall.common.utils.PageUtils;
+import com.atguigu.gulimall.common.utils.Query;
 
 import com.atguigu.gulimall.coupon.dao.CouponDao;
 import com.atguigu.gulimall.coupon.entity.CouponEntity;
 import com.atguigu.gulimall.coupon.service.CouponService;
+import org.springframework.util.StringUtils;
 
 
 @Service("couponService")
@@ -20,7 +21,7 @@ public class CouponServiceImpl extends ServiceImpl<CouponDao, CouponEntity> impl
     public PageUtils queryPage(Map<String, Object> params) {
         IPage<CouponEntity> page = this.page(
                 new Query<CouponEntity>().getPage(params),
-                new QueryWrapper<CouponEntity>()
+                new QueryWrapper<CouponEntity>().eq(!StringUtils.isEmpty(params.get("key")),"coupon_name",params.get("key"))
         );
 
         return new PageUtils(page);

@@ -4,17 +4,14 @@ import java.util.Arrays;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.atguigu.gulimall.product.entity.vo.SpuSaveVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.product.entity.SpuInfoEntity;
 import com.atguigu.gulimall.product.service.SpuInfoService;
-import com.atguigu.common.utils.PageUtils;
-import com.atguigu.common.utils.R;
+import com.atguigu.gulimall.common.utils.PageUtils;
+import com.atguigu.gulimall.common.utils.R;
 
 
 
@@ -57,11 +54,10 @@ public class SpuInfoController {
     /**
      * 保存
      */
-    @RequestMapping("/save")
+    @PostMapping("/save")
    // @RequiresPermissions("product:spuinfo:save")
-    public R save(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.save(spuInfo);
-
+    public R save(@RequestBody SpuSaveVo spuInfo){
+		spuInfoService.saveSpu(spuInfo);
         return R.ok();
     }
 
@@ -86,5 +82,18 @@ public class SpuInfoController {
 
         return R.ok();
     }
+
+    @PostMapping("/{id}/up")
+    public R changeSpuStatus(@PathVariable String id){
+        spuInfoService.changeSpuStatus(id);
+        return R.ok();
+    }
+
+    @PostMapping("/{id}/down")
+    public R changeSpuStatusToDown(@PathVariable String id){
+        spuInfoService.changeSpuStatusToDown(id);
+        return R.ok();
+    }
+
 
 }
