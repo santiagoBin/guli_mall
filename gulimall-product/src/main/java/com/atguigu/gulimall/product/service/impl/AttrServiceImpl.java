@@ -12,8 +12,10 @@ import com.atguigu.gulimall.product.service.ProductAttrValueService;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -97,6 +99,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
     }
 
 
+    @Cacheable(value = "attr",key = "'attrinfo:'+#root.args[0]")
     @Override
     public AttrRespVo getAttrInfo(Long attrId) {
         AttrRespVo attrRespVo = new AttrRespVo();
@@ -179,5 +182,17 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
             return item;
         }).collect(Collectors.toList());
         productAttrValueService.saveBatch(collect);
+    }
+
+    @Override
+    public List<Long> getSearchAttrByIds(List<Long> attrIds) {
+        List<AttrEntity> list = this.list(new QueryWrapper<AttrEntity>().in("attr_id", attrIds).eq("search_type", 1).select("attr_id"));
+        List<Long> collect = new ArrayList<>();
+        if (list!=null&&list.size()>0){
+                collect = list.stream().map(item -> {
+                return item.getAttrId();
+            }).collect(Collectors.toList());
+        }
+        return collect;
     }
 }

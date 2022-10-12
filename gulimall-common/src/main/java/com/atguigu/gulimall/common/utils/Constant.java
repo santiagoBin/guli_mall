@@ -46,6 +46,7 @@ public class Constant {
      */
     public static final String ASC = "asc";
 
+    public static final String REGISTER_CODE_PREFIX_KEY = "register.phone:";
     /**
      * 菜单类型
      *

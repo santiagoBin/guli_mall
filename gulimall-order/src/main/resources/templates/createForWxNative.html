@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>谷粒商城微信支付</title>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/static/index/img/favicon.jpg}" />
+</head>
+<body >
+<div style="margin: 100px auto;width: 500px ;">
+    <div id="myQrcode" style="margin: 0 auto;width: 300px"></div>
+    <div style="width: 380px;color: firebrick;margin: 10px auto">谷粒商城，畅享好物！谷粒商城邀请您使用微信支付!</div>
+</div>
+
+<div id="orderId" hidden>${orderId}</div>
+<div id="returnUrl" hidden>${returnUrl}</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.5.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+
+    jQuery('#myQrcode').qrcode({
+        text	: [[${codeUrl}]]
+    });
+
+    $(function () {
+        //定时器
+        setInterval(function () {
+            console.log('开始查询支付状态...');
+            $.ajax({
+                'url': '/queryByOrderId',
+                data: {
+                    'orderId': $('#orderId').text()
+                },
+                success: function (result) {
+                    if (result.status != null
+                        && result.status === 1) {
+                        location.href = $('#returnUrl').text()
+                    }
+                },
+                error: function (result) {
+                    alert(result)
+                }
+            })
+        }, 10000)
+    });
+
+</script>
+</html>

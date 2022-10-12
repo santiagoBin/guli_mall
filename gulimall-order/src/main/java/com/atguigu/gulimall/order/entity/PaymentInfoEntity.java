@@ -1,5 +1,7 @@
 package com.atguigu.gulimall.order.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 
@@ -52,10 +54,12 @@ public class PaymentInfoEntity implements Serializable {
 	/**
 	 * 创建时间
 	 */
+	@TableField(fill = FieldFill.INSERT)
 	private Date createTime;
 	/**
 	 * 确认时间
 	 */
+	@TableField(fill = FieldFill.INSERT)
 	private Date confirmTime;
 	/**
 	 * 回调内容

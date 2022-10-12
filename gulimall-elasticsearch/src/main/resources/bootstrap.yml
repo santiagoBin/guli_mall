@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: gulimall-elasticsearch
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 798f6432-3da5-442f-b838-4c9865fa2ac4
+        group: prod
+        file-extension: yaml

@@ -1,6 +1,7 @@
 package com.atguigu.gulimall.product.service;
 
 import com.atguigu.gulimall.product.entity.vo.AttrGroupRelationVo;
+import com.atguigu.gulimall.product.entity.vo.SpuItemAttrGroupVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.atguigu.gulimall.common.utils.PageUtils;
 import com.atguigu.gulimall.product.entity.AttrGroupEntity;
@@ -26,5 +27,7 @@ public interface AttrGroupService extends IService<AttrGroupEntity> {
     PageUtils queryNoRelationAttr(String attrgroupId, Map<String, Object> params);
 
     void saveAttrRelationBatch(List<AttrGroupRelationVo> relationVos);
+
+    List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catelogId);
 }
 

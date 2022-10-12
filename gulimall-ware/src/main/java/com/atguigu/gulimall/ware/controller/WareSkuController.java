@@ -1,21 +1,22 @@
 package com.atguigu.gulimall.ware.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
-//import org.apache.shiro.authz.annotation.RequiresPermissions;
+
+import com.atguigu.gulimall.common.exception.NoStockException;
+import com.atguigu.gulimall.common.to.WareHasStockTo;
+import com.atguigu.gulimall.ware.vo.WareSkuLockVo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.ware.entity.WareSkuEntity;
 import com.atguigu.gulimall.ware.service.WareSkuService;
 import com.atguigu.gulimall.common.utils.PageUtils;
 import com.atguigu.gulimall.common.utils.R;
 
+import static com.atguigu.gulimall.common.exception.BizCodeEnum.NO_STOCK_EXCEPTION;
 
 
 /**
@@ -31,6 +32,18 @@ public class
 WareSkuController {
     @Autowired
     private WareSkuService wareSkuService;
+
+
+    @PostMapping("/lock/order")
+    R orderLockStock(@RequestBody WareSkuLockVo wareSkuLockVo){
+        try{
+            boolean lockStock = wareSkuService.orderLockStock(wareSkuLockVo);
+            return R.ok().setData(lockStock);
+        }catch (NoStockException e){
+            return R.error(NO_STOCK_EXCEPTION.getCode(),NO_STOCK_EXCEPTION.getMsg());
+        }
+
+    }
 
     /**
      * 列表
@@ -86,6 +99,11 @@ WareSkuController {
 		wareSkuService.removeByIds(Arrays.asList(ids));
 
         return R.ok();
+    }
+    @PostMapping("hasStock")
+    public R getSkuHasStock(@RequestBody List<Long> skuIds){
+        List<WareHasStockTo> list = wareSkuService.hasStock(skuIds);
+        return R.ok().setData(list);
     }
 
 }

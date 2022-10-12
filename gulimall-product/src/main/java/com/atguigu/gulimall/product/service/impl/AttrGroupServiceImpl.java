@@ -3,6 +3,7 @@ package com.atguigu.gulimall.product.service.impl;
 import com.atguigu.gulimall.product.entity.AttrAttrgroupRelationEntity;
 import com.atguigu.gulimall.product.entity.AttrEntity;
 import com.atguigu.gulimall.product.entity.vo.AttrGroupRelationVo;
+import com.atguigu.gulimall.product.entity.vo.SpuItemAttrGroupVo;
 import com.atguigu.gulimall.product.service.AttrAttrgroupRelationService;
 import com.atguigu.gulimall.product.service.AttrService;
 import org.springframework.beans.BeanUtils;
@@ -92,5 +93,11 @@ public class AttrGroupServiceImpl extends ServiceImpl<AttrGroupDao, AttrGroupEnt
             BeanUtils.copyProperties(item,attrgroupRelationEntity);
             attrAttrgroupRelationService.save(attrgroupRelationEntity);
         }).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SpuItemAttrGroupVo> getAttrGroupWithAttrsBySpuId(Long spuId, Long catelogId) {
+        List<SpuItemAttrGroupVo> list =  baseMapper.getAttrGroupWithAttrsBySpuId(spuId,catelogId);
+        return list;
     }
 }

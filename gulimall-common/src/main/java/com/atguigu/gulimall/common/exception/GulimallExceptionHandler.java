@@ -14,7 +14,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import java.util.HashMap;
 import java.util.Map;
 @Slf4j
-@RestControllerAdvice(basePackages = "com.atguigu.gulimall")
+@RestControllerAdvice(basePackages = "com.atguigu.gulimall.product")
 public class GulimallExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(getClass());
     /**

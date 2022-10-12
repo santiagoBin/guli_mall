@@ -23,3 +23,5 @@ spring:
             group: dev
         group: prod
         file-extension: yaml
+server:
+  port: 8005

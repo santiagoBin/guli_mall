@@ -149,7 +149,7 @@ public class PurchaseServiceImpl extends ServiceImpl<PurchaseDao, PurchaseEntity
                 purchaseDetailEntity.setStatus(item.getStatus());
                 purchaseDetailEntity.setReason(item.getReason());
                 purchaseDetailService.updateById(purchaseDetailEntity);
-                WareSkuEntity wareSku = wareSkuService.getOne(new QueryWrapper<WareSkuEntity>().eq("sku_id", item.getItemId()));
+                WareSkuEntity wareSku = wareSkuService.getOne(new QueryWrapper<WareSkuEntity>().eq("sku_id", item.getItemId()).eq("ware_id",purchaseDetailEntity.getWareId()));
                 if (wareSku!=null){
                     wareSku.setStock(wareSku.getStock()+item.getSkuPurchasedNum());
                     wareSkuService.updateById(wareSku);

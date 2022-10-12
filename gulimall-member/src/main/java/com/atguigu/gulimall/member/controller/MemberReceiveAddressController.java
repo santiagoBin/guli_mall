@@ -1,15 +1,13 @@
 package com.atguigu.gulimall.member.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
+import com.atguigu.gulimall.common.to.member.MemberAddrTo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.member.entity.MemberReceiveAddressEntity;
 import com.atguigu.gulimall.member.service.MemberReceiveAddressService;
@@ -31,6 +29,12 @@ public class MemberReceiveAddressController {
     @Autowired
     private MemberReceiveAddressService memberReceiveAddressService;
 
+
+    @GetMapping("/{memberId}/getMemberAddressByMemberId")
+    public List<MemberAddrTo> getMemberAddress(@PathVariable("memberId") Long memberId){
+        return memberReceiveAddressService.getListById(memberId);
+    }
+
     /**
      * 列表
      */
@@ -51,8 +55,9 @@ public class MemberReceiveAddressController {
     public R info(@PathVariable("id") Long id){
 		MemberReceiveAddressEntity memberReceiveAddress = memberReceiveAddressService.getById(id);
 
-        return R.ok().put("memberReceiveAddress", memberReceiveAddress);
+        return R.ok().setData(memberReceiveAddress);
     }
+
 
     /**
      * 保存

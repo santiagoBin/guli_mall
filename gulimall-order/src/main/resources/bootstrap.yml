@@ -23,3 +23,9 @@ spring:
             group: dev
         group: prod
         file-extension: yaml
+#配置线程池
+gulimall:
+  thread:
+    coreSize: 36
+    maxSize: 200
+    keepAliveTime: 10
