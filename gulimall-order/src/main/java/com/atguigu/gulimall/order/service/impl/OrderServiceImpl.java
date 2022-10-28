@@ -555,7 +555,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
             m.put("total_fee", order.getTotalAmount().multiply(new BigDecimal(100)).longValue()+"");
             m.put("spbill_create_ip", "127.0.0.1");
             m.put("notify_url",
-                    "https://bwdrnq.natappfree.cc/wxPay/notify");
+                    "https://bwdrnq.natappfree.cc/wxPay/notify");//微信二维码支付异步回调地址必须是https且要能公网访问的！
             m.put("trade_type", "NATIVE");
 //2、HTTPClient来根据URL访问第三方接口并且传递参数
             HttpClient client = new

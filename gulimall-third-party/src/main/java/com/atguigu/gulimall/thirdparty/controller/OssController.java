@@ -27,8 +27,8 @@ public class OssController {
     private String ak;
     @Value(value = "${spring.cloud.alicloud.oss.endpoint}")
     private String endpoint;
-    @Value(value = "${spring.cloud.alicloud.oss.bucket}")
-    private String bucket;
+//    @Value(value = "${spring.cloud.alicloud.oss.bucket}")
+    private String bucket = "gulimall-santiago";
     @GetMapping("policy")
     public R policy(){
         String host = "https://" + bucket + "." + endpoint;

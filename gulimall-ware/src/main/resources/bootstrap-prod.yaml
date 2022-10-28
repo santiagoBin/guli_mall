@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: gulimall-ware
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-service.gulimall:8848

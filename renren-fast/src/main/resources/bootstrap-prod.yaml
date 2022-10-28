@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: renren-fast
+  cloud:
+    nacos:
+      discovery:
+        server-addr: nacos-service.gulimall:8848

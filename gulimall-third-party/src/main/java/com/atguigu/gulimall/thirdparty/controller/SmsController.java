@@ -21,14 +21,14 @@ import java.util.concurrent.TimeUnit;
 @RestController
 @RequestMapping("sms")
 public class SmsController {
-    @Value("${spring.aliyun.sms.host}")
-    private String host;
-    @Value("${spring.aliyun.sms.path}")
-    private String path;
-    @Value("${spring.aliyun.sms.method}")
-    private String method;
-    @Value("${spring.aliyun.sms.appcode}")
-    private String appcode;
+//    @Value("${spring.aliyun.sms.host}")
+    private String host = "https://gyytz.market.alicloudapi.com";
+//    @Value("${spring.aliyun.sms.path}")
+    private String path = "/sms/smsSend";
+//    @Value("${spring.aliyun.sms.method}")
+    private String method = "post";
+//    @Value("${spring.aliyun.sms.appcode}")
+    private String appcode = "2022fd3db7464a0d904a81195bc7e3b8";
     @Autowired
     StringRedisTemplate redisTemplate;
 

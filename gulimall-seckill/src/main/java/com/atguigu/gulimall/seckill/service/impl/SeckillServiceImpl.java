@@ -1,5 +1,9 @@
 package com.atguigu.gulimall.seckill.service.impl;
 
+import com.alibaba.csp.sentinel.Entry;
+import com.alibaba.csp.sentinel.SphU;
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson2.util.RyuDouble;
@@ -63,32 +67,44 @@ public class SeckillServiceImpl implements SeckillService {
         }
     }
 
+    @SentinelResource(value = "getCurrentSeckillSkusResource",blockHandler = "blockHandler")
     @Override
     public List<SeckillSkuRedisTo> getCurrentSeckillSkus() {
-        long currentTimeMillis = System.currentTimeMillis();
-        Set<String> keys = redisTemplate.keys(SESSION__CACHE_PREFIX + "*");
-        List<SeckillSkuRedisTo> collect = new ArrayList<>();
-        for (String key:keys){
-            String replace = key.replace(SESSION__CACHE_PREFIX, "");
-            String[] split = replace.split("-");
-            long startTime = Long.parseLong(split[0]);
-            long endTime = Long.parseLong(split[1]);
-            if (currentTimeMillis>=startTime&&currentTimeMillis<=endTime){
-                List<String> range = redisTemplate.opsForList().range(key, 0, -1);
-                BoundHashOperations<String, String, String> operations = redisTemplate.boundHashOps(SECKILL_CHARE_PREFIX);
-                assert range != null;
-                List<String> list = operations.multiGet(range);
-                if (list!=null&&list.size()>=0){
-                    List<SeckillSkuRedisTo> collect1 = list.stream().map(item -> {
-                        String items = (String) item;
-                        SeckillSkuRedisTo seckillSkuRedisTo = JSON.parseObject(items, SeckillSkuRedisTo.class);
-                        return seckillSkuRedisTo;
-                    }).collect(Collectors.toList());
-                    collect.addAll(collect1);
+        try(Entry entry = SphU.entry("seckillSkus")){
+            long currentTimeMillis = System.currentTimeMillis();
+            Set<String> keys = redisTemplate.keys(SESSION__CACHE_PREFIX + "*");
+            List<SeckillSkuRedisTo> collect = new ArrayList<>();
+            for (String key:keys){
+                String replace = key.replace(SESSION__CACHE_PREFIX, "");
+                String[] split = replace.split("-");
+                long startTime = Long.parseLong(split[0]);
+                long endTime = Long.parseLong(split[1]);
+                if (currentTimeMillis>=startTime&&currentTimeMillis<=endTime){
+                    List<String> range = redisTemplate.opsForList().range(key, 0, -1);
+                    BoundHashOperations<String, String, String> operations = redisTemplate.boundHashOps(SECKILL_CHARE_PREFIX);
+                    assert range != null;
+                    List<String> list = operations.multiGet(range);
+                    if (list!=null&&list.size()>=0){
+                        List<SeckillSkuRedisTo> collect1 = list.stream().map(item -> {
+                            String items = (String) item;
+                            SeckillSkuRedisTo seckillSkuRedisTo = JSON.parseObject(items, SeckillSkuRedisTo.class);
+                            return seckillSkuRedisTo;
+                        }).collect(Collectors.toList());
+                        collect.addAll(collect1);
+                    }
                 }
             }
+            return collect;
+        }catch (BlockException e){
+            log.error("资源被限流{}",e.getMessage());
         }
-        return collect;
+        return null;
+    }
+
+    public List<SeckillSkuRedisTo> blockHandler(BlockException e) {
+
+        log.error("getCurrentSeckillSkusResource被限流了,{}",e.getMessage());
+        return null;
     }
 
     @Override

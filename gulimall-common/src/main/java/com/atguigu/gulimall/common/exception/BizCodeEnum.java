@@ -8,7 +8,8 @@ public enum BizCodeEnum {
     LOGIN_ERROR_PASSWD_EXCEPTION(12001,"用户登录密码错误异常"),
     LOGIN_ACCOUNT_NOT_FOUND_EXCEPTION(12002,"用户登录账户不存在异常"),
     LOGIN_EMPTY_EXCEPTION(12003,"用户登录账号或密码缺失异常"),
-    NO_STOCK_EXCEPTION(21000,"商品库存不足");
+    NO_STOCK_EXCEPTION(21000,"商品库存不足"),
+    TO_MANY_REQUEST(10002,"请求流量过大");
 
     private int code;
     private String msg;
