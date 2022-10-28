@@ -97,6 +97,13 @@
     </dependencyManagement>
 
     <build>
+        <resources>
+            <resource>
+                <includes>
+                    <include>configuration.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

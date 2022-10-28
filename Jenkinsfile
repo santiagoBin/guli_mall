@@ -65,8 +65,9 @@ pipeline {
             }
             steps {
                 input(id: "deploy-to-dev-$PROJECT_NAME", message: "是否将项目 $PROJECT_NAME 部署到集群中?")
+                sh "echo 当前目录 `pwd`"
                 sh 'cd $PROJECT_NAME'
-                kubernetesDeploy(configs: "deploy/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+                kubernetesDeploy(configs: "$PROJECT_NAME/deploy/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
             }
         }
 
