@@ -61,7 +61,7 @@ pipeline {
         }
         stage('部署到k8s') {
             when{
-                branch 'master'
+                branch 'main'
             }
             steps {
                 input(id: 'deploy-to-dev-$PROJECT_NAME', message: '是否将项目$PROJECT_NAME部署到集群中?')
