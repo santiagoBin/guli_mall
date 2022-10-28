@@ -15,8 +15,8 @@ pipeline {
         BRANCH_NAME = 'main'
     }
     parameters {
-        string(name:'PROJECT_NAME',defaultValue: 'gulimall-gateway',description:'')
-        string(name:'PROJECT_VERSION',defaultValue: 'v0.0Beta',description:'')
+        string(name:'PROJECT_NAME',defaultValue: 'gulimall-gateway',description:'项目名称')
+        string(name:'PROJECT_VERSION',defaultValue: 'v0.0Beta',description:'项目版本')
     }
     stages {
         stage('拉取代码') {
@@ -64,8 +64,8 @@ pipeline {
                 branch 'main'
             }
             steps {
-                input(id: 'deploy-to-dev-$PROJECT_NAME', message: '是否将项目$PROJECT_NAME部署到集群中?')
-                kubernetesDeploy(configs: '$PROJECT_NAME/deploy/**', enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+                input(id: "deploy-to-dev-$PROJECT_NAME", message: "是否将项目 $PROJECT_NAME 部署到集群中?")
+                kubernetesDeploy(configs: "$PROJECT_NAME/deploy/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
             }
         }
 
