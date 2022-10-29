@@ -66,14 +66,14 @@ pipeline {
             steps {
                 container ('maven') {
                     input(id: "deploy-to-dev-$PROJECT_NAME", message: "是否将项目 $PROJECT_NAME 部署到集群中?")
-//                    kubernetesDeploy(configs: "$PROJECT_NAME/deploy/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
-                    withCredentials([
-                            kubeconfigFile(
-                                    credentialsId: env.KUBECONFIG_CREDENTIAL_ID,
-                                    variable: 'KUBECONFIG')
-                    ]) {
-                        sh 'envsubst < $PROJECT_NAME/deploy/gulimall-gateway-deploy.yaml | kubectl apply -f -'
-                    }
+                    kubernetesDeploy(configs: "$PROJECT_NAME/deploy/**", enableConfigSubstitution: true, kubeconfigId: "$KUBECONFIG_CREDENTIAL_ID")
+//                    withCredentials([
+//                            kubeconfigFile(
+//                                    credentialsId: env.KUBECONFIG_CREDENTIAL_ID,
+//                                    variable: 'KUBECONFIG')
+//                    ]) {
+//                        sh 'envsubst < $PROJECT_NAME/deploy/gulimall-gateway-deploy.yaml | kubectl apply -f -'
+//                    }
                 }
             }
         }
