@@ -72,7 +72,7 @@ pipeline {
                                     credentialsId: env.KUBECONFIG_CREDENTIAL_ID,
                                     variable: 'KUBECONFIG')
                     ]) {
-                        sh 'cd $PROJECT_NAME && envsubst < deploy/*.yaml | kubectl apply -f -'
+                        sh 'envsubst < $PROJECT_NAME/deploy/*.yaml | kubectl apply -f -'
                     }
                 }
             }
