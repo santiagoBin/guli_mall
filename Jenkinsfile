@@ -72,7 +72,7 @@ pipeline {
                                     credentialsId: env.KUBECONFIG_CREDENTIAL_ID,
                                     variable: 'KUBECONFIG')
                     ]) {
-                        sh 'envsubst < $PROJECT_NAME/deploy/*.yaml | kubectl apply -f -'
+                        sh 'envsubst < $PROJECT_NAME/deploy/gulimall-gateway-deploy.yaml | kubectl apply -f -'
                     }
                 }
             }
