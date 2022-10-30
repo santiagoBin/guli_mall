@@ -1,0 +1,66 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: gulimall-auth
+  namespace: gulimall
+  labels:
+    app: gulimall-auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gulimall-auth
+  template:
+    metadata:
+      labels:
+        app: gulimall-auth
+    spec:
+      containers:
+        - name: gulimall-auth
+          image: $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:$latest
+          ports:
+            - containerPort: 8160
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 1000m
+              memory: 500Mi
+            requests:
+              cpu: 10m
+              memory: 10Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: gulimall-auth
+  namespace: gulimall
+  labels:
+    app: gulimall-auth
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8160
+      targetPort: 8160
+      nodePort: 30001
+  selector:
+    app: gulimall-auth
+  type: NodePort
+  sessionAffinity: None
+
+
