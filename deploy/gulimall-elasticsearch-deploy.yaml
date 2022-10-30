@@ -1,23 +1,23 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: gulimall-renren-fast
+  name: gulimall-elasticsearch
   namespace: gulimall
   labels:
-    app: gulimall-renren-fast
+    app: gulimall-elasticsearch
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gulimall-renren-fast
+      app: gulimall-elasticsearch
   template:
     metadata:
       labels:
-        app: gulimall-renren-fast
+        app: gulimall-elasticsearch
     spec:
       containers:
-        - name: gulimall-renren-fast
-          image: $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:$latest
+        - name: gulimall-elasticsearch
+          image: $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:latest
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -47,19 +47,19 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: gulimall-renren-fast
+  name: gulimall-elasticsearch
   namespace: gulimall
   labels:
-    app: gulimall-renren-fast
+    app: gulimall-elasticsearch
 spec:
   ports:
     - name: http
       protocol: TCP
       port: 8080
       targetPort: 8080
-      nodePort: 30012
+      nodePort: 30004
   selector:
-    app: gulimall-renren-fast
+    app: gulimall-elasticsearch
   type: NodePort
   sessionAffinity: None
 

@@ -1,25 +1,25 @@
 kind: Deployment
 apiVersion: apps/v1
 metadata:
-  name: gulimall-auth
+  name: gulimall-third-party
   namespace: gulimall
   labels:
-    app: gulimall-auth
+    app: gulimall-third-party
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gulimall-auth
+      app: gulimall-third-party
   template:
     metadata:
       labels:
-        app: gulimall-auth
+        app: gulimall-third-party
     spec:
       containers:
-        - name: gulimall-auth
+        - name: gulimall-third-party
           image: $REGISTRY/$DOCKERHUB_NAMESPACE/$PROJECT_NAME:latest
           ports:
-            - containerPort: 8160
+            - containerPort: 8080
               protocol: TCP
           resources:
             limits:
@@ -47,19 +47,19 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: gulimall-auth
+  name: gulimall-third-party
   namespace: gulimall
   labels:
-    app: gulimall-auth
+    app: gulimall-third-party
 spec:
   ports:
     - name: http
       protocol: TCP
-      port: 8160
-      targetPort: 8160
-      nodePort: 30001
+      port: 8080
+      targetPort: 8080
+      nodePort: 30010
   selector:
-    app: gulimall-auth
+    app: gulimall-third-party
   type: NodePort
   sessionAffinity: None
 
