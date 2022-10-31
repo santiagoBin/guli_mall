@@ -5,11 +5,11 @@ pipeline {
         }
     }
     environment {
-        DOCKER_CREDENTIAL_ID = 'dockerhub-id'
+        DOCKER_CREDENTIAL_ID = 'aliyunhub-id'
         GITEE_CREDENTIAL_ID = 'gitee-id'
         KUBECONFIG_CREDENTIAL_ID = 'kubeconfig-demo'
-        REGISTRY = 'docker.io'
-        DOCKERHUB_NAMESPACE = 'santiagosky'
+        REGISTRY = 'registry.cn-hangzhou.aliyuncs.com'
+        DOCKERHUB_NAMESPACE = 'santiago_gulimall'
         GITEE_ACCOUNT = 'santiagobin'
         SONAR_CREDENTIAL_ID = 'sonar-qube'
         BRANCH_NAME = 'main'
