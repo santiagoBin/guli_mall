@@ -1,19 +1,19 @@
-spring:
-  application:
-    name: gulimall-cart
-  cloud:
-    inetutils:
-      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
-    nacos:
-      discovery:
-        server-addr: localhost:8848
-      config:
-        namespace: 17dc6d08-ebfe-4664-a9a6-59936496d011
-        group: prod
-        file-extension: yaml
-#配置线程池
-gulimall:
-  thread:
-    coreSize: 36
-    maxSize: 200
-    keepAliveTime: 10
+#spring:
+#  application:
+#    name: gulimall-cart
+#  cloud:
+#    inetutils:
+#      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+#    nacos:
+#      discovery:
+#        server-addr: localhost:8848
+#      config:
+#        namespace: 17dc6d08-ebfe-4664-a9a6-59936496d011
+#        group: prod
+#        file-extension: yaml
+##配置线程池
+#gulimall:
+#  thread:
+#    coreSize: 36
+#    maxSize: 200
+#    keepAliveTime: 10
