@@ -3,4 +3,4 @@ spring:
     name: gulimall-auth
   nacos:
     discovery:
-      server-addr: nacos-service.gulimall:8848
+      server-addr: nacos.gulimall:8848
