@@ -5,7 +5,7 @@ spring:
     sampler:
       probability: 1
   zipkin:
-    base-url: zipkin-service.gulimall:9411
+    base-url: http://zipkin-service.gulimall:9411
     discovery-client-enabled: false
     sender:
       type: web
@@ -13,7 +13,7 @@ spring:
     sentinel:
       transport:
         #配置sentinel dashboard地址
-        dashboard: sentinel-service.gulimall:8858
+        dashboard: http://sentinel-service.gulimall:8858
         port: 8719
     gateway:
       globalcors:
