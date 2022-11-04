@@ -27,7 +27,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
   redis:
     port: 6379
-    host: http://redis.gulimall
+    host: redis.gulimall
   session:
     store-type: redis
 
