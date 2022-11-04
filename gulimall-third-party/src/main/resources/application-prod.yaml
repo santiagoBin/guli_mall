@@ -13,8 +13,8 @@ spring:
       type: web
   cloud:
     alicloud:
-      access-key: 阿里云密钥
-      secret-key: 阿里云密钥
+      access-key: 你的阿里云密钥
+      secret-key: 你的阿里云密钥
       oss:
         endpoint: oss-cn-hangzhou.aliyuncs.com
 #        bucket: gulimall-santiago
