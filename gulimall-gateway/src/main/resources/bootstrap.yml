@@ -1,14 +1,14 @@
-#spring:
-#  application:
-#    name: gulimall-gateway
-#  cloud:
-#    inetutils:
-#      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
-#    nacos:
-#      discovery:
-#        server-addr: http://127.0.0.1:8848
-#      config:
-#        namespace: b0a57427-8b02-4efa-ae57-9731de511a14
-#        group: prod
-#        file-extension: yaml
-#
+spring:
+  application:
+    name: gulimall-gateway
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: http://127.0.0.1:8848
+      config:
+        namespace: b0a57427-8b02-4efa-ae57-9731de511a14
+        group: prod
+        file-extension: yaml
+
