@@ -13,8 +13,8 @@ spring:
       type: web
   cloud:
     alicloud:
-      access-key: 你的阿里云密钥
-      secret-key: 你的阿里云密钥
+      access-key: LTAI5tDF9cuTARH6BqMKqrML
+      secret-key: mgoRK3Gkrg2RruoqBH6ehyMwb174Ni
       oss:
         endpoint: oss-cn-hangzhou.aliyuncs.com
 #        bucket: gulimall-santiago
@@ -31,7 +31,7 @@ spring:
 #      method: post
 #      appcode: 2022fd3db7464a0d904a81195bc7e3b8
   redis:
-    host: http://redis.gulimall
+    host: redis.gulimall
     port: 6379
   mvc:
     format:

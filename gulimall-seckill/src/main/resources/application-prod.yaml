@@ -17,7 +17,7 @@ spring:
         #默认8719端口，假如被占用会自动从8719开始依次+1扫描，直至找到未被占用的端口
         port: 8719
   rabbitmq:
-    host: http://rabbitmq.gulimall
+    host: rabbitmq.gulimall
     port: 5672
     username: guest
     password: guest
@@ -38,7 +38,7 @@ spring:
     time-zone: GMT+8
     date-format: yyyy-MM-dd HH:mm:ss
   redis:
-    host: http://redis.gulimall
+    host: redis.gulimall
     port: 6379
   session:
     store-type: REDIS

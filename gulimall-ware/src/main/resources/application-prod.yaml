@@ -28,10 +28,10 @@ spring:
   thymeleaf:
     cache: false
   redis:
-    host: http://redis.gulimall
+    host: redis.gulimall
     port: 6379
   rabbitmq:
-    host: http://rabbitmq.gulimall
+    host: rabbitmq.gulimall
     port: 5672
     username: guest
     password: guest

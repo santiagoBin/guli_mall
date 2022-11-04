@@ -13,7 +13,6 @@ spring:
           - data-id: renren-dev.yml
             refresh: true
             group: dev
-
         group: prod
         file-extension: yaml
 
