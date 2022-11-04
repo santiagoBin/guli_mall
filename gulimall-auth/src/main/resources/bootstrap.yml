@@ -1,15 +1,4 @@
 spring:
-  profiles: prod
-  application:
-    name: gulimall-auth
-  cloud:
-    nacos:
-      discovery:
-        server-addr: http://nacos.gulimall:8848
-      config:
-        server-addr: http://nacos.gulimall:8848
----
-spring:
   profiles: dev
   application:
     name: gulimall-auth
