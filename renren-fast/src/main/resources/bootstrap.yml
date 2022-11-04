@@ -1,19 +1,19 @@
-#spring:
-#  application:
-#    name: renren-fast
-#  cloud:
-#    inetutils:
-#      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
-#    nacos:
-#      discovery:
-#        server-addr: localhost:8848
-#      config:
-#        namespace: f5823caf-1662-4dff-a497-c7a9fa7b6475
-#        extension-configs:
-#          - data-id: renren-dev.yml
-#            refresh: true
-#            group: dev
-#
-#        group: prod
-#        file-extension: yaml
-#
+spring:
+  application:
+    name: renren-fast
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: f5823caf-1662-4dff-a497-c7a9fa7b6475
+        extension-configs:
+          - data-id: renren-dev.yml
+            refresh: true
+            group: dev
+
+        group: prod
+        file-extension: yaml
+
