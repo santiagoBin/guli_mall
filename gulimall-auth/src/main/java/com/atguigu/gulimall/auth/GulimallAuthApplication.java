@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.auth;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -11,10 +12,13 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableFeignClients(basePackages = {"com.atguigu.gulimall.auth.feign"})
 @ComponentScan({"com.atguigu"})
+
 public class GulimallAuthApplication {
+
 
     public static void main(String[] args) {
         SpringApplication.run(GulimallAuthApplication.class, args);
+
     }
 
 }

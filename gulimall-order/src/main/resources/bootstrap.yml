@@ -9,23 +9,50 @@ spring:
         server-addr: localhost:8848
       config:
         namespace: f5a6411f-5141-4033-a40f-7af1681ec41a
-        extension-configs:
-          - data-id: datasource.yml
-            refresh: true
-            group: dev
-
-          - data-id: mybatis-plus.yml
-            refresh: true
-            group: dev
-
-          - data-id: other.yml
-            refresh: true
-            group: dev
-        group: prod
         file-extension: yaml
-#配置线程池
-gulimall:
-  thread:
-    coreSize: 36
-    maxSize: 200
-    keepAliveTime: 10
+---
+spring:
+  profiles: prod
+  application:
+    name: gulimall-order
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: nacos.gulimall:8848
+      config:
+        server-addr: nacos.gulimall:8848
+        namespace: f5a6411f-5141-4033-a40f-7af1681ec41a
+        file-extension: yaml
+        group: prod
+---
+spring:
+  profiles: dev
+  application:
+    name: gulimall-order
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: f5a6411f-5141-4033-a40f-7af1681ec41a
+        file-extension: yaml
+        group: dev
+---
+spring:
+  profiles: test
+  application:
+    name: gulimall-order
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: f5a6411f-5141-4033-a40f-7af1681ec41a
+        file-extension: yaml
+        group: test

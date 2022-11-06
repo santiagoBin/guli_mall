@@ -1,13 +1,58 @@
-#spring:
-#  application:
-#    name: gulimall-elasticsearch
-#  cloud:
-#    inetutils:
-#      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
-#    nacos:
-#      discovery:
-#        server-addr: localhost:8848
-#      config:
-#        namespace: 798f6432-3da5-442f-b838-4c9865fa2ac4
-#        group: prod
-#        file-extension: yaml
+spring:
+  application:
+    name: gulimall-elasticsearch
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 798f6432-3da5-442f-b838-4c9865fa2ac4
+        file-extension: yaml
+---
+spring:
+  profiles: prod
+  application:
+    name: gulimall-elasticsearch
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: nacos.gulimall:8848
+      config:
+        server-addr: nacos.gulimall:8848
+        namespace: 798f6432-3da5-442f-b838-4c9865fa2ac4
+        file-extension: yaml
+        group: prod
+---
+spring:
+  profiles: dev
+  application:
+    name: gulimall-elasticsearch
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 798f6432-3da5-442f-b838-4c9865fa2ac4
+        file-extension: yaml
+        group: dev
+---
+spring:
+  profiles: test
+  application:
+    name: gulimall-elasticsearch
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 798f6432-3da5-442f-b838-4c9865fa2ac4
+        file-extension: yaml
+        group: test

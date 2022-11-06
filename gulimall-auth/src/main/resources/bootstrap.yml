@@ -9,6 +9,52 @@ spring:
         server-addr: localhost:8848
       config:
         namespace: 30633c9a-abd4-4927-a5a0-edd2e1b07cb9
-        group: prod
+        file-extension: yaml
+---
+spring:
+  profiles: dev
+  application:
+    name: gulimall-auth
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 30633c9a-abd4-4927-a5a0-edd2e1b07cb9
+        group: dev
         file-extension: yaml
 
+---
+spring:
+  profiles: test
+  application:
+    name: gulimall-auth
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 30633c9a-abd4-4927-a5a0-edd2e1b07cb9
+        group: test
+        file-extension: yaml
+
+---
+spring:
+  profiles: prod
+  application:
+    name: gulimall-auth
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: nacos.gulimall:8848
+      config:
+        namespace: 30633c9a-abd4-4927-a5a0-edd2e1b07cb9
+        group: prod
+        file-extension: yaml
+        server-addr: nacos.gulimall:8848

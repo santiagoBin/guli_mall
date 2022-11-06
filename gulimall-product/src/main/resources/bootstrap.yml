@@ -9,19 +9,50 @@ spring:
         server-addr: localhost:8848
       config:
         namespace: fcb3d4ad-586c-45c8-b9f6-bda916dcac44
-        extension-configs:
-          - data-id: datasource.yml
-            refresh: true
-            group: dev
-
-          - data-id: mybatis-plus.yml
-            refresh: true
-            group: dev
-
-          - data-id: other.yml
-            refresh: true
-            group: dev
-        group: prod
         file-extension: yaml
-server:
-  port: 8005
+---
+spring:
+  profiles: prod
+  application:
+    name: gulimall-product
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: nacos.gulimall:8848
+      config:
+        server-addr: nacos.gulimall:8848
+        namespace: fcb3d4ad-586c-45c8-b9f6-bda916dcac44
+        file-extension: yaml
+        group: prod
+---
+spring:
+  profiles: test
+  application:
+    name: gulimall-product
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: fcb3d4ad-586c-45c8-b9f6-bda916dcac44
+        file-extension: yaml
+        group: test
+---
+spring:
+  profiles: dev
+  application:
+    name: gulimall-product
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: fcb3d4ad-586c-45c8-b9f6-bda916dcac44
+        file-extension: yaml
+        group: dev

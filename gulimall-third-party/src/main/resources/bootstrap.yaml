@@ -1,4 +1,5 @@
 spring:
+  profiles: dev
   application:
     name: gulimall-third-party
   cloud:
@@ -9,9 +10,49 @@ spring:
         server-addr: localhost:8848
       config:
         namespace: 3d8f7588-a47d-460c-9905-503955f7b07e
-        extension-configs:
-          - data-id: oss.yaml
-            refresh: true
-            group: dev
         group: dev
+        file-extension: yaml
+---
+spring:
+  profiles: prod
+  application:
+    name: gulimall-third-party
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: nacos.gulimall:8848
+      config:
+        server-addr: nacos.gulimall:8848
+        namespace: 3d8f7588-a47d-460c-9905-503955f7b07e
+        group: prod
+        file-extension: yaml
+---
+spring:
+  application:
+    name: gulimall-third-party
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 3d8f7588-a47d-460c-9905-503955f7b07e
+        file-extension: yaml
+---
+spring:
+  profiles: test
+  application:
+    name: gulimall-third-party
+  cloud:
+    inetutils:
+      ignored-interfaces: 'VMware Virtual Ethernet Adapter for VMnet1,VMware Virtual Ethernet Adapter for VMnet8'
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+      config:
+        namespace: 3d8f7588-a47d-460c-9905-503955f7b07e
+        group: test
         file-extension: yaml
