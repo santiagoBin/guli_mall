@@ -643,13 +643,6 @@ spring:
 
 https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html#_%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86
 
-## oss key-secret
-
-```excel
-UserPrincipalName,AccessKeyId,AccessKeySecret
-gulimall@1192944832747919.onaliyun.com,LTAI5tDF9cuTARH6BqMKqrML,mgoRK3Gkrg2RruoqBH6ehyMwb174Ni
-```
-
 ![image-20220730233614823](https://gulimall-santiago.oss-cn-hangzhou.aliyuncs.com/typroa_img/image-20220730233614823.png)
 
 
