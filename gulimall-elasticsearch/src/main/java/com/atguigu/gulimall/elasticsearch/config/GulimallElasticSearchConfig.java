@@ -4,12 +4,15 @@ import org.apache.http.HttpHost;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestClient;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 
 @Configuration
 public class GulimallElasticSearchConfig {
+    @Value("${elasticsearch.host}")
+    private String esHost;
     // @Bean
     // public RestHighLevelClient esRestClient(){
     //     RestHighLevelClient client = new RestHighLevelClient(
@@ -30,7 +33,7 @@ public class GulimallElasticSearchConfig {
     @Bean
     public RestHighLevelClient esRestClient(){
         RestHighLevelClient client = new RestHighLevelClient(
-                RestClient.builder(new HttpHost("elasticsearch.gulimall", 9200, "http")));
+                RestClient.builder(new HttpHost(esHost, 9200, "http")));
         return  client;
     }
 }
